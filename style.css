@@ -1,0 +1,157 @@
+:root {
+    --gold: #c5a059;
+    --beige: #f9f6f2;
+    --dark: #121212;
+    --white: #ffffff;
+    --red: #a32a2a;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: var(--white);
+    color: var(--dark);
+    scroll-behavior: smooth;
+}
+
+.bodoni { font-family: 'Bodoni Moda', serif; }
+
+header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+    color: var(--dark);
+}
+
+.controls { display: flex; gap: 15px; }
+
+select, #btn-favoritos {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 12px 25px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btn-favoritos { background: var(--dark); color: white; border: none; }
+#btn-favoritos:hover { background: var(--gold); }
+
+.hero {
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--beige);
+    padding: 0 20px;
+}
+
+.hero .subtitle {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.hero h1 { font-family: 'Bodoni Moda', serif; font-size: 3.8rem; font-weight: 400; margin: 0; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 80px 8%;
+}
+
+.card { transition: 0.4s; text-align: left; }
+
+.img-wrapper {
+    background: #fdfdfd;
+    height: 380px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #f9f9f9;
+}
+
+.card img { width: 85%; height: 85%; object-fit: contain; transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+.card:hover img { transform: scale(1.1); }
+
+.card .brand { font-size: 9px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+.card h3 { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; margin: 5px 0; font-weight: 400; }
+.price { font-weight: 300; color: #666; font-size: 1.1rem; }
+
+.btn-add-fav {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid var(--dark);
+    font-size: 9px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-add-fav:hover { background: var(--dark); color: white; }
+
+/* Modal y Lista de Favoritos */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content { margin: 8% auto; width: 90%; max-width: 450px; text-align: center; }
+
+.fav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-remove {
+    background: none;
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 9px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-remove:hover { background: var(--red); color: white; }
+
+.close { float: right; font-size: 2.5rem; cursor: pointer; font-weight: 200; }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALMA Makeup | Esencia y Belleza</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">ALMA Makeup</div>
+            <div class="controls">
+                <select id="product-select">
+                    <option value="all">Colección completa</option>
+                    <option value="lipstick">Labiales</option>
+                    <option value="eyeshadow">Sombras</option>
+                    <option value="blush">Rubores</option>
+                    <option value="foundation">Bases</option>
+                </select>
+                <button id="btn-favoritos">Mi Selección (<span id="fav-count">0</span>)</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="subtitle">Belleza con propósito</span>
+        <h1>Resalta tu Esencia</h1>
+        <p>Alta cosmética seleccionada para el alma de la mujer colombiana.</p>
+    </section>
+
+    <main id="makeup-container" class="grid-container"></main>
+
+    <div id="modal-favoritos" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="bodoni">Mi Lista Privada</h2>
+            <hr>
+            <div id="lista-favs-content">
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
