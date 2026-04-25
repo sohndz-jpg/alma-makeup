@@ -12,25 +12,21 @@ let favoritos = [];
 async function obtenerColeccion() {
     try {
         container.innerHTML = "<h2 class='bodoni' style='grid-column: 1/-1; text-align: center;'>Iniciando ALMA Makeup...</h2>";
-        
-        // Cargamos Nyx y Maybelline por calidad de fotos
         const marcas = ['nyx', 'maybelline'];
         const peticiones = marcas.map(m => fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?brand=${m}`));
         const respuestas = await Promise.all(peticiones);
         const resultados = await Promise.all(respuestas.map(r => r.json()));
         
-        // Filtramos para asegurar que tengan precio e imagen válida
         todosLosProductos = resultados.flat().filter(p => p.price > 0 && p.image_link.includes('http'));
         renderizar(todosLosProductos);
     } catch (e) {
-        container.innerHTML = "Error al conectar con el servidor.";
+        container.innerHTML = "Error al conectar con la boutique.";
     }
 }
 
 function renderizar(lista) {
     container.innerHTML = "";
     lista.forEach(p => {
-        // Conversión realista a Pesos Colombianos (COP)
         const cop = Math.round(p.price * 4200);
         const precio = new Intl.NumberFormat('es-CO', {
             style: 'currency', currency: 'COP', minimumFractionDigits: 0
@@ -61,7 +57,7 @@ function agregarFavorito(id) {
 function quitarFavorito(id) {
     favoritos = favoritos.filter(p => p.id !== id);
     actualizarContador();
-    abrirLista(); // Refresca la lista visualmente al quitar uno
+    abrirLista();
 }
 
 function actualizarContador() {
@@ -70,15 +66,14 @@ function actualizarContador() {
 
 function abrirLista() {
     modal.style.display = "block";
-    listaFavsContent.innerHTML = favoritos.length ? "" : "<p class='bodoni'>Tu selección está vacía.</p>";
-    
+    listaFavsContent.innerHTML = favoritos.length ? "" : "<p>Tu selección está vacía.</p>";
     favoritos.forEach(p => {
         const item = document.createElement('div');
         item.classList.add('fav-item');
         item.innerHTML = `
             <div style="text-align: left;">
                 <strong style="display:block; font-size:12px;">${p.name}</strong>
-                <small style="color:var(--gold); text-transform:uppercase; font-size:9px;">${p.brand}</small>
+                <small style="color:var(--gold); font-size:9px;">${p.brand}</small>
             </div>
             <button class="btn-remove" onclick="quitarFavorito(${p.id})">Quitar</button>
         `;
@@ -86,7 +81,6 @@ function abrirLista() {
     });
 }
 
-// Eventos de usuario
 btnFavs.onclick = abrirLista;
 spanClose.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
